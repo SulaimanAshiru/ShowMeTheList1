@@ -3,13 +3,26 @@ package com.example.showmethelist;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
+    private RecyclerView rvPeople;
+    private PeopleAdapter peopleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        rvPeople = findViewById(R.id.rv_people);
+
+        //Finish setting up recyclerView
+        rvPeople.setLayoutManager(new LinearLayoutManager(this));
+        rvPeople.setHasFixedSize(true);
+
+        //Init people adapter
+        peopleAdapter = new PeopleAdapter(Utils.getList());
+        rvPeople.setAdapter(peopleAdapter);
     }
 
     // TODO: Step 1: Add RecyclerView Dependency to gradle
@@ -22,4 +35,6 @@ public class MainActivity extends AppCompatActivity {
     // TODO: Step 5: COMMIT AND PUSH
 
     // TODO: Step 6: Create RecyclerView Adapter (We will do this together but you can try it out)
+
 }
+
